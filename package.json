@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "node server.js",
-    "vercel-start": "node index.js"
+    "vercel-start": "node index.js",
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
