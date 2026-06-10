@@ -17,3 +17,24 @@ exports.getUsers = async (req, res) => {
     });
   }
 };
+
+exports.getUserById = async (req, res) => {
+  try {
+    await connectDB();
+
+    const user = await User.findById(req.params.id).select(
+      "username email phone profileImage"
+    );
+
+    if (!user) {
+      return res.status(404).json({ msg: "User not found" });
+    }
+
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(500).json({
+      msg: "Failed to fetch user",
+      error: error.message,
+    });
+  }
+};

@@ -6,6 +6,7 @@ const connectDB = require("../config/db");
 const authRoutes = require("../routes/authRouters");
 const bookRoutes = require("../routes/bookRoutes");
 const userRoutes = require("../routes/userRoutes");
+const chatRoutes = require("../routes/chatRoutes");
 
 const app = express();
 
@@ -55,5 +56,6 @@ app.get("/health", async (req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/books", bookRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/chat", chatRoutes);
 
 module.exports = app;
