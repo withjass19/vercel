@@ -4,6 +4,7 @@ require("dotenv").config();
 
 const connectDB = require("../config/db");
 const authRoutes = require("../routes/authRouters");
+const bookRoutes = require("../routes/bookRoutes");
 
 const app = express();
 
@@ -51,5 +52,6 @@ app.get("/health", async (req, res) => {
 
 // Auth routes
 app.use("/api/auth", authRoutes);
+app.use("/api/books", bookRoutes);
 
 module.exports = app;
