@@ -1,56 +1,28 @@
-// require("dotenv").config();
-// const express = require("express");
-// const { mongoose } = require("mongoose");
-
-// const app = express();
-
-// app.use(express.json());
-
-// let isConnected = false;
-
-// async function connectToMongoDB(){
-//     try {
-//         await mongoose.connect(process.env.MONGO_URL, {
-//             useNewUrlParser: true,
-//             useUnifiedTopology: true
-//         });
-//         isConnected = true;
-//         console.log('connected to MongoDB')
-//     } catch (error) {
-//         console.error(error);
-//     }
-// }
-
-// app.use((req, res, next) => {
-//     if(!isConnected){
-//         connectToMongoDB();
-//     }
-//     next();
-// })
-
-// app.get("/", (req, res) => {
-//     res.send("hello world");
-// })
-
-// module.exports = app;
-
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 
-const connectDB = require("../config/db")
+const connectDB = require("../config/db");
+const authRoutes = require("../routes/authRouters");
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
+// Test route
 app.get("/", (req, res) => {
-  res.send("Express API is running on Vercel");
+  res.status(200).json({
+    success: true,
+    message: "Express API is running on Vercel",
+  });
 });
 
 app.get("/api/test", (req, res) => {
-  res.json({ success: true, message: "API working" });
+  res.status(200).json({
+    success: true,
+    message: "API working",
+  });
 });
 
 app.get("/health", async (req, res) => {
@@ -70,4 +42,7 @@ app.get("/health", async (req, res) => {
   }
 });
 
-module.exports = app; 
+// Auth routes
+app.use("/api/auth", authRoutes);
+
+module.exports = app;
