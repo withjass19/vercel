@@ -25,6 +25,13 @@ app.get("/api/test", (req, res) => {
   });
 });
 
+app.get("/env-test", (req, res) => {
+  res.json({
+    mongo: process.env.MONGO_URL ? "Found" : "Missing",
+    jwt: process.env.JWT_SECRET ? "Found" : "Missing",
+  });
+});
+
 app.get("/health", async (req, res) => {
   try {
     await connectDB();
