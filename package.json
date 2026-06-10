@@ -3,18 +3,19 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node index",
-    "dev": "node server.js",
-    "vercel-start": "node index.js",
+    "dev": "vercel dev",
+    "start": "node api/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "mongodb": "^7.2.0",
+    "mongoose": "^9.7.0",
     "nodemon": "^3.1.14"
   }
 }
